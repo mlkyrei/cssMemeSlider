@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'When you underestimate the complexity of a task',
         'Me when submitting the task to cross-check even though it is not completed'
     ];
-    
+
     let currentIndex = 0;
     const totalSlides = images.length;
 
@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
             img.style.height = '100%';
             img.style.position = 'absolute';
             img.style.top = '0';
-            img.style.left = '0';
+            img.style.left = '0'; 
             img.style.transition = 'transform 0.5s ease-in-out';
-            img.style.transform = `translateX(${index === currentIndex ? '0' : '100%'})`; 
+            img.style.transform = `translateX(${index === currentIndex ? '0' : '100%'})`;
             imageContainer.appendChild(img);
         });
 
@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
             p.textContent = text;
             p.style.position = 'absolute';
             p.style.top = '0';
-            p.style.left = '0';
+            p.style.left = '0'; 
             p.style.width = '100%';
             p.style.transition = 'transform 0.5s ease-in-out';
-            p.style.transform = `translateX(${index === currentIndex ? '0' : '100%'})`; 
+            p.style.transform = `translateX(${index === currentIndex ? '0' : '100%'})`;
             textContainer.appendChild(p);
         });
 
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         imageContainer.style.overflow = 'hidden';
         imageContainer.style.width = '100%';
         imageContainer.style.height = '100%';
-        
+
         textContainer.style.position = 'relative';
         textContainer.style.overflow = 'hidden';
         textContainer.style.width = '100%';
@@ -63,36 +63,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const imgs = imageContainer.querySelectorAll('img');
         const ps = textContainer.querySelectorAll('p');
 
-        const imgOffset = index > currentIndex ? '100%' : '-100%';
-        const pOffset = index > currentIndex ? '100%' : '-100%';
-
         imgs.forEach((img, i) => {
-            img.style.transform = `translateX(${i === index ? '0' : imgOffset})`;
+            if (i === index) {
+                img.style.transform = 'translateX(0)';
+            } else {
+                img.style.transform = 'translateX(100%)';
+            }
         });
 
         ps.forEach((p, i) => {
-            p.style.transform = `translateX(${i === index ? '0' : pOffset})`;
+            if (i === index) {
+                p.style.transform = 'translateX(0)';
+            } else {
+                p.style.transform = 'translateX(100%)';
+            }
         });
 
-        setTimeout(() => {
-            imgs[index].style.transform = 'translateX(0)';
-            ps[index].style.transform = 'translateX(0)';
-        }, 50); 
-    }
-
-    function goToSlide(index) {
-        if (index >= 0 && index < totalSlides) {
-            updateSlider(index);
-            currentIndex = index;
-        }
+        currentIndex = index;
     }
 
     const buttons = document.querySelectorAll('.button-container button');
 
     buttons.forEach((button, index) => {
-        button.addEventListener('click', () => goToSlide(index));
+        button.addEventListener('click', () => {
+            updateSlider(index);
+        });
     });
 
     createSlides();
-    updateSlider(currentIndex);
+    updateSlider(currentIndex); // Show the first slide at the beginning
 });

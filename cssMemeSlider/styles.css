@@ -114,6 +114,7 @@ button:hover {
 
 .content img, .text p {
     transition: opacity 0.5s ease-in-out;
+    left: 100%; 
 }
 }
 
@@ -227,6 +228,7 @@ button:hover {
     
     .content img, .text p {
         transition: opacity 0.5s ease-in-out;
+        left: 100%; 
     }
     }
     
