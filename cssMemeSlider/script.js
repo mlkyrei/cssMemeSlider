@@ -91,5 +91,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     createSlides();
-    updateSlider(currentIndex); // Show the first slide at the beginning
+    updateSlider(currentIndex);
 });
