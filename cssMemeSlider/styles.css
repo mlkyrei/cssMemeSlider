@@ -110,7 +110,6 @@ button:hover {
 }
 .content, .text {
     display: flex;
-    transition: transform 0.5s ease-in-out;
 }
 
 .content img, .text p {
@@ -224,7 +223,6 @@ button:hover {
     }
     .content, .text {
         display: flex;
-        transition: transform 0.5s ease-in-out;
     }
     
     .content img, .text p {
