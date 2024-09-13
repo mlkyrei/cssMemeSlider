@@ -108,6 +108,14 @@ button {
 button:hover {
     background-color: lightcoral; 
 }
+.content, .text {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.content img, .text p {
+    transition: opacity 0.5s ease-in-out;
+}
 }
 
 
@@ -213,6 +221,14 @@ button:hover {
     .button-container:hover button,
     button:hover {
         background-color: lightcoral; 
+    }
+    .content, .text {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    
+    .content img, .text p {
+        transition: opacity 0.5s ease-in-out;
     }
     }
     
