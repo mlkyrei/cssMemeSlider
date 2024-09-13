@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'assets/meme3.jpeg',
         'assets/meme4.jpeg'
     ];
-    
+
     const texts = [
         'When you ask a person to comply with a requirement during cross-check review when you did not comply with it yourself.',
         'My shelter page after adding stylesheet',
@@ -26,11 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
         images.forEach((image, index) => {
             const img = document.createElement('img');
             img.src = image;
-            img.style.width = '100%'; 
+            img.style.width = '100%';
             img.style.height = '100%';
             img.style.position = 'absolute';
             img.style.top = '0';
-            img.style.left = '0'; 
+            img.style.left = '0';
+            img.style.zIndex = totalSlides - index; // DID not Work here, need to change!
             img.style.transition = 'transform 0.5s ease-in-out';
             img.style.transform = `translateX(${index === currentIndex ? '0' : '100%'})`;
             imageContainer.appendChild(img);
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             p.textContent = text;
             p.style.position = 'absolute';
             p.style.top = '0';
-            p.style.left = '0'; 
+            p.style.left = '0';
             p.style.width = '100%';
             p.style.transition = 'transform 0.5s ease-in-out';
             p.style.transform = `translateX(${index === currentIndex ? '0' : '100%'})`;
@@ -64,32 +65,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const ps = textContainer.querySelectorAll('p');
 
         imgs.forEach((img, i) => {
-            if (i === index) {
-                img.style.transform = 'translateX(0)';
-            } else {
-                img.style.transform = 'translateX(100%)';
-            }
+            img.style.transform = `translateX(${i === index ? '0' : '100%'})`;
         });
 
         ps.forEach((p, i) => {
-            if (i === index) {
-                p.style.transform = 'translateX(0)';
-            } else {
-                p.style.transform = 'translateX(100%)';
-            }
+            p.style.transform = `translateX(${i === index ? '0' : '100%'})`;
         });
 
-        currentIndex = index;
+        setTimeout(() => {
+            imgs[index].style.transform = 'translateX(0)';
+            ps[index].style.transform = 'translateX(0)';
+        }, 50);
+    }
+
+    function goToSlide(index) {
+        if (index >= 0 && index < totalSlides) {
+            updateSlider(index);
+            currentIndex = index;
+        }
     }
 
     const buttons = document.querySelectorAll('.button-container button');
 
     buttons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            updateSlider(index);
-        });
+        button.addEventListener('click', () => goToSlide(index));
     });
 
     createSlides();
-    updateSlider(currentIndex); // Show the first slide at the beginning
+    updateSlider(currentIndex);
 });
