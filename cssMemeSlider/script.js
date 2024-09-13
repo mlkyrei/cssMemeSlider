@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             p.style.left = '0';
             p.style.width = '100%';
             p.style.transition = 'transform 0.5s ease-in-out';
-            p.style.transform = `translateX(${index === currentIndex ? '0' : '100%'})`; // 
+            p.style.transform = `translateX(${index === currentIndex ? '0' : '100%'})`; 
             textContainer.appendChild(p);
         });
 
@@ -63,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const imgs = imageContainer.querySelectorAll('img');
         const ps = textContainer.querySelectorAll('p');
 
-        const imgOffset = index > currentIndex ? '-100%' : '100%';
-        const pOffset = index > currentIndex ? '-100%' : '100%';
+        const imgOffset = index > currentIndex ? '100%' : '-100%';
+        const pOffset = index > currentIndex ? '100%' : '-100%';
 
         imgs.forEach((img, i) => {
             img.style.transform = `translateX(${i === index ? '0' : imgOffset})`;
